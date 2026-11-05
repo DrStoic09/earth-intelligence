@@ -1,0 +1,42 @@
+name: ingest-firms
+
+on:
+  schedule:
+    - cron: "17 */6 * * *"   # every 6 hours
+  workflow_dispatch:          # manual run from the Actions tab
+
+# No pull_request triggers: secrets are never exposed to forks or PR code.
+permissions:
+  contents: write
+
+concurrency:
+  group: ingest
+  cancel-in-progress: false
+
+jobs:
+  firms:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      # Tests use a fake key and mocked network; the real secret is not provided here.
+      - name: Run tests
+        run: python -m unittest discover -s tests -v
+
+      # The secret is exposed to this single step only.
+      - name: Ingest FIRMS
+        env:
+          FIRMS_MAP_KEY: ${{ secrets.FIRMS_MAP_KEY }}
+        run: python scripts/firms_ingest.py
+
+      - name: Commit data
+        run: |
+          git config user.name "earth-intelligence-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add data/firms
+          git diff --staged --quiet || (git commit -m "data: FIRMS update" && git push)
