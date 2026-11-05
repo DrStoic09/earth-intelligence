@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>EARTH INTELLIGENCE · Understanding our planet through data</title>
+<meta name="description" content="Environmental intelligence dashboard powered by NASA FIRMS active-fire data.">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.css">
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+<header class="top">
+  <div class="brand"><span class="logo"></span><div><h1>EARTH INTELLIGENCE</h1><p>Understanding our planet through data.</p></div></div>
+  <nav><a href="#overview">Overview</a><a href="#map">Map</a><a href="#analytics">Analytics</a><a href="#environment">Environment</a><a href="#forecast">Forecasts</a></nav>
+</header>
+<main>
+<div id="alert" class="alert" hidden></div>
+
+<section id="overview">
+  <h2>Global overview</h2>
+  <div class="kpis">
+    <div class="card kpi"><span class="lbl">Recorded detections</span><b id="k-total">–</b><small id="k-total-sub">in the stored period</small></div>
+    <div class="card kpi"><span class="lbl">Latest observation date (UTC)</span><b id="k-date">–</b><small id="k-date-sub"></small></div>
+    <div class="card kpi"><span class="lbl">Data freshness</span><b id="k-fresh"><i class="dot"></i><span>–</span></b><small id="k-fresh-sub"></small></div>
+    <div class="card kpi"><span class="lbl">Observation period</span><b id="k-span">–</b><small>days of stored data</small></div>
+  </div>
+  <div class="grid2">
+    <div class="card"><h3>Daily detections</h3><div class="chartbox"><canvas id="c-trend"></canvas></div></div>
+    <div class="card"><h3>Satellite breakdown</h3><div class="chartbox"><canvas id="c-share"></canvas></div></div>
+  </div>
+</section>
+
+<section id="map">
+  <h2>World map</h2>
+  <div class="card">
+    <div class="filters">
+      <label>Satellite <select id="m-sat"></select></label>
+      <label>Observation date <select id="m-date"></select></label>
+      <span id="m-view" class="muted"></span>
+    </div>
+    <div id="mapbox"><div id="map-msg" class="mapmsg" hidden></div></div>
+    <p class="note">Each rectangle is a 2° × 2° cell containing real VIIRS detections (colour = detections per cell). Cell positions are grid cells, not individual fires. Zoom with scroll/pinch, pan by dragging, Shift+drag to zoom to a box; the count above reflects the current view.</p>
+  </div>
+</section>
+
+<section id="analytics">
+  <h2>Analytics</h2>
+  <div class="card">
+    <div class="filters">
+      <label>From <input type="date" id="a-from"></label>
+      <label>To <input type="date" id="a-to"></label>
+      <label>Metric <select id="a-metric">
+        <option value="detections">Detections (count)</option>
+        <option value="high_confidence">High-confidence detections (count)</option>
+        <option value="frp_mw_sum">Fire radiative power, sum (MW)</option></select></label>
+      <button id="a-csv" type="button">Download CSV</button>
+    </div>
+    <div class="grid2">
+      <div><h3>Daily activity by satellite</h3><div class="chartbox"><canvas id="c-daily"></canvas></div></div>
+      <div><h3>Satellite comparison (selected range)</h3><div class="chartbox"><canvas id="c-cmp"></canvas></div></div>
+    </div>
+    <p class="note" id="a-note"></p>
+    <details><summary>Methodology and units</summary>
+      <p class="note">Source: NASA FIRMS (LANCE), VIIRS near-real-time active-fire detections. Counts are thermal anomalies per UTC day, not burned area; high-confidence uses the FIRMS confidence flag; FRP is fire radiative power in megawatts. NRT values can be revised. The most recent day is partial until the day ends.</p></details>
+  </div>
+</section>
+
+<section id="environment">
+  <h2>Environmental intelligence</h2>
+  <p class="muted">Integration framework. These datasets are <b>not yet ingested</b>; no values are shown.</p>
+  <div class="grid3" id="env-cards"></div>
+</section>
+
+<section id="forecast">
+  <h2>Prediction framework</h2>
+  <div class="card">
+    <p id="f-status"></p>
+    <ul class="req">
+      <li>Model methodology documented</li><li>Historical backtesting against held-out data</li>
+      <li>Confidence intervals on every forecast</li><li>Stated 24-month forecast horizon</li><li>Published model limitations</li>
+    </ul>
+    <p class="note">Forecasts will only be published once a long-enough record exists and all five requirements above are met.</p>
+  </div>
+</section>
+</main>
+<footer>Data: NASA FIRMS (LANCE). Basemap © OpenStreetMap contributors © CARTO. <span id="f-updated"></span></footer>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+<script src="assets/app.js"></script>
+</body>
+</html>
