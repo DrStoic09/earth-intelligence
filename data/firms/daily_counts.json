@@ -1,0 +1,65 @@
+{
+ "data": {
+  "VIIRS_NOAA20_NRT": {
+   "2026-11-01": {
+    "detections": 44372,
+    "high_confidence": 1989,
+    "frp_mw_sum": 363485.7
+   },
+   "2026-11-02": {
+    "detections": 46751,
+    "high_confidence": 1885,
+    "frp_mw_sum": 374298.5
+   },
+   "2026-11-03": {
+    "detections": 55277,
+    "high_confidence": 2171,
+    "frp_mw_sum": 508941.4
+   },
+   "2026-11-04": {
+    "detections": 63959,
+    "high_confidence": 2704,
+    "frp_mw_sum": 650369.8
+   },
+   "2026-11-05": {
+    "detections": 46066,
+    "high_confidence": 1992,
+    "frp_mw_sum": 425279.9
+   }
+  },
+  "VIIRS_NOAA21_NRT": {
+   "2026-11-01": {
+    "detections": 43133,
+    "high_confidence": 2446,
+    "frp_mw_sum": 425550.5
+   },
+   "2026-11-02": {
+    "detections": 49536,
+    "high_confidence": 2498,
+    "frp_mw_sum": 490135.4
+   },
+   "2026-11-03": {
+    "detections": 52900,
+    "high_confidence": 3151,
+    "frp_mw_sum": 567757.3
+   },
+   "2026-11-04": {
+    "detections": 52760,
+    "high_confidence": 3616,
+    "frp_mw_sum": 555216.7
+   },
+   "2026-11-05": {
+    "detections": 18633,
+    "high_confidence": 1275,
+    "frp_mw_sum": 200996.8
+   }
+  }
+ },
+ "meta": {
+  "provider": "NASA FIRMS (LANCE)",
+  "nature": "Satellite observation (VIIRS active-fire detections, near real time)",
+  "unit": "detections per UTC day; FRP in MW",
+  "limitations": "Detections are thermal anomalies, not burned area; NRT values may be revised.",
+  "updated_utc": "2026-11-05T14:13:20Z"
+ }
+}
