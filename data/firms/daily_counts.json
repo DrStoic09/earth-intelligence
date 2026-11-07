@@ -27,9 +27,14 @@
     "frp_mw_sum": 602144.9
    },
    "2026-11-06": {
-    "detections": 43993,
-    "high_confidence": 1992,
-    "frp_mw_sum": 367671.8
+    "detections": 55252,
+    "high_confidence": 2279,
+    "frp_mw_sum": 441173.9
+   },
+   "2026-11-07": {
+    "detections": 1942,
+    "high_confidence": 10,
+    "frp_mw_sum": 5330.7
    }
   },
   "VIIRS_NOAA21_NRT": {
@@ -59,9 +64,14 @@
     "frp_mw_sum": 662711.3
    },
    "2026-11-06": {
-    "detections": 53992,
-    "high_confidence": 3394,
-    "frp_mw_sum": 661749.1
+    "detections": 60251,
+    "high_confidence": 3571,
+    "frp_mw_sum": 704252.3
+   },
+   "2026-11-07": {
+    "detections": 6122,
+    "high_confidence": 77,
+    "frp_mw_sum": 21794.3
    }
   }
  },
@@ -70,6 +80,6 @@
   "nature": "Satellite observation (VIIRS active-fire detections, near real time)",
   "unit": "detections per UTC day; FRP in MW",
   "limitations": "Detections are thermal anomalies, not burned area; NRT values may be revised.",
-  "updated_utc": "2026-11-06T19:24:39Z"
+  "updated_utc": "2026-11-07T05:58:36Z"
  }
 }
